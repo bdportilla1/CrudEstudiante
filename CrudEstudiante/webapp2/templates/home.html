@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	
+  <meta charset="UTF-8">
+  <title>CRUD ESTUDIANTES</title>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+
+  <script type="text/javascript" src ="{{ url_for('static', filename='js/script.js') }}" ></script>
+
+  <link rel="icon" type="image/jpg" href="{{url_for('static', filename='img/ico.jpg')}}">
+
+</head>
+
+<body>
+  <header>
+    
+    <img class="logo1" src="{{url_for('static', filename='img/logo.png')}}" />
+    <h1>BASE DE DATOS AVANZADAS</h1>
+
+  </header>
+
+  <div class="contenido">
+    <div class="container">
+      <h1>TABLA ESTUDIANTES</h1>
+
+      <p>Seleccione la operacion:</p>
+      <select id="cmbopciones" name="opciones">
+        <option value="Ver">Ver Registros</option>
+        <option value="Agregar">Agregar Registro</option>
+        <option value="Modificar">Modificar Registro</option>
+        <option value="Eliminar">Eliminar Registro</option>
+      </select>
+
+    <div id="agg">
+          <h1>Agregar Estudiante</h1>
+        <form method="POST" action="/">
+          <label>Ingrese los nombres:</label>
+          <input type="text" name="title" placeholder="Nombres">
+          <br>
+          <label for="email">Ingrese los apellidos:</label>
+          <input type="text" name="apellido" placeholder="Apellidos">
+
+          <input type="submit" class="btn btn-success" value="Add">
+        </form>
+      
+    </div>
+    
+
+    <div id="crud">
+      <h1>ESTUDIANTES</h1>
+    
+
+    <div class="tabla">
+      <table class="table table-condensed">
+      {% for estudiante in estudiantes %}
+      <tr>
+        <td>
+          <p>{{estudiante.id}}</p>
+        </td>
+        <td>
+          <form method="POST" action="./update">
+            <input type="hidden" value="{{estudiante.id}}" name="idlibro">
+            <input type="text" class="newtitle" value="{{estudiante.nombre}}" name="newtitle">
+            <input type="text" class="apellido" value="{{estudiante.apellido}}" name="apellido">
+            <div class="bt_update">
+              <input type="submit" value="Update" class="btn btn-info">
+            </div>
+            
+          </form>
+        </td>
+        <td>
+            <form method="POST" action="./delete" style="display: inline">
+              <input type="hidden" value="{{estudiante.id}}" name="idlibro">
+
+              <div class="bt_eliminar">
+                <input type="submit" value="Delete" class="btn btn-danger">
+              </div>
+              
+            </form>
+          </td>
+       </tr>
+      {% endfor %}
+
+    </table>
+      
+    </div>
+     
+    </div>
+    </div>
+  </div>
+
+  <footer>
+    <aside class="f_tres">
+      <h2>Tarea</h2>
+      <hr>
+      <ul>
+        <li>Python</li>
+        <li>Flask</li>
+        <li>SQLITE</li>
+        <li>SQLALCHEMY</li>
+      </ul>
+    </aside>
+    <aside class="f_uno">
+      <h2>UTPL</h2>
+      <hr>
+      <h3>Por: Bryant Portilla</h2>
+      <p>bryantporti@gmail.com</p>
+      <p>0997xxxxxxx</p>    
+    </aside>
+
+    <aside class="f_dos">
+      <img class="logo" src="{{url_for('static', filename='img/escudo.png')}}">
+
+    </aside>
+    <div class="ff">
+      
+    </div>
+    
+    
+  </footer>
+	
+</body>
+</html>
